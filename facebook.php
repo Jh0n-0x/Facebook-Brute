@@ -46,10 +46,10 @@ print"--------------------------------------------------------------------\n";
 		$source = curl_exec($ch);
 		curl_close($ch);
 		if(eregi("Home", $source)){
-			return false;
+			return true;
 
 		}else{
-			return true;
+			return false;
 
 		}
 	}
