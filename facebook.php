@@ -43,7 +43,7 @@ print"--------------------------------------------------------------------\n\n";
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "email=$usuario&pass=$senha");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "email=$usuario&pass=$senha&login=Login");
 		curl_setopt($ch, CURLOPT_USERAGENT, "Opera/9.21 (Windows NT 5.1; U; tr)");
 		curl_setopt($ch, CURLOPT_COOKIE, "datr=80ZzUfKqDOjwL8pauwqMjHTa");
 		curl_setopt($ch, CURLOPT_COOKIEFILE, "cookie.txt");
