@@ -52,8 +52,8 @@
       curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	  //curl_setopt($ch, CURLOPT_PROXY, $proxy[0]);
-	  //curl_setopt($ch, CURLOPT_PROXYPORT, $proxy[1]);
+      curl_setopt($ch, CURLOPT_PROXY, $proxy[0]);
+      curl_setopt($ch, CURLOPT_PROXYPORT, $proxy[1]);
       curl_setopt($ch, CURLOPT_POST, true);
       curl_setopt($ch, CURLOPT_POSTFIELDS, "email=$usuario&pass=$senha");
       curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36");
